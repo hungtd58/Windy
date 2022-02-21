@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#007bff</color>
+    <color name="colorPrimaryDark">#007bff</color>
+    <color name="colorAccent">#007bff</color>
+    <color name="colorBlue">#007bff</color>
+    <color name="hiad_video_progress_blue">#0d9ffb</color>
+    <color name="hiad_emui_functional_red">#FA2A2D</color>
+
+    <color name="colorPrimaryLight1">#ffd60000</color>
+    <color name="colorPrimaryLight2">#fff6501d</color>
+    <color name="colorPrimaryLight3">#fff6c025</color>
+    <color name="colorPrimaryLight4">#ff098043</color>
+    <color name="colorPrimaryLight5">#ff30b77a</color>
+    <color name="colorPrimaryLight6">#ff009be7</color>
+    <color name="colorPrimaryLight7">#ff3e51b5</color>
+    <color name="colorPrimaryLight8">#ff7986cc</color>
+    <color name="colorPrimaryLight9">#ff8e24ac</color>
+    <color name="colorPrimaryLight10">#ffe77c74</color>
+    <color name="colorPrimaryLight11">#ff616161</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+</resources>
