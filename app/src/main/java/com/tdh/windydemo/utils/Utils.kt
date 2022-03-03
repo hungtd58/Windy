@@ -1,5 +1,7 @@
 package com.tdh.windydemo.utils
 
+import android.content.res.Resources
+import android.util.TypedValue
 import com.tdh.windydemo.App
 import java.io.IOException
 import java.io.InputStream
@@ -48,3 +50,8 @@ class Utils {
         }
     }
 }
+
+val Number.toPx get() = TypedValue.applyDimension(
+    TypedValue.COMPLEX_UNIT_DIP,
+    this.toFloat(),
+    Resources.getSystem().displayMetrics)

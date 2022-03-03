@@ -50,4 +50,5 @@ dependencies {
     api('androidx.lifecycle:lifecycle-runtime-ktx:2.4.1')
     api('androidx.lifecycle:lifecycle-livedata-ktx:2.4.1')
     api('androidx.fragment:fragment-ktx:1.4.1')
+    api('org.apache.commons:commons-lang3:3.12.0')
 }

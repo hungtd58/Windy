@@ -15,7 +15,10 @@ class ApiRepositoryImpl(private val apiService: ApiService) : ApiRepository {
 
     override suspend fun getLocationList(): List<Location> {
         val dataJson = Utils.loadJsonFromAsset("city.list.json")
-        return Gson().fromJson(dataJson, object : TypeToken<List<Location>>() {}.type)
+        return Gson().fromJson<List<Location>?>(
+            dataJson,
+            object : TypeToken<List<Location>>() {}.type
+        ).sortedBy { it.name }
     }
 
     override suspend fun getLocationFavoriteList(): List<Location> {

@@ -5,5 +5,6 @@ data class Location(
     val country: String,
     val id: Int,
     val name: String,
-    val state: String
+    val state: String,
+    var isSelected: Boolean = false
 )

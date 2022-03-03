@@ -2,12 +2,14 @@ package com.tdh.libase.base
 
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import com.tdh.libase.base.view.LiProgressDialog
 
@@ -154,6 +156,23 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
                 .setNeutralButton(neutralBtn, neutralListener)
                 .setOnDismissListener(listener)
                 .show()
+        }
+    }
+
+    fun showDialogFragment(dialogFragment: DialogFragment) {
+        if (activity == null || requireActivity().isDestroyed || requireActivity().isFinishing || dialogFragment.isAdded) return
+        val fm = requireActivity().supportFragmentManager
+        val transaction = fm.beginTransaction()
+        val oldFragment = fm.findFragmentByTag(dialogFragment.javaClass.canonicalName)
+        if (oldFragment != null) {
+            transaction.remove(oldFragment)
+        }
+        transaction.add(dialogFragment, dialogFragment.javaClass.canonicalName)
+        transaction.commitAllowingStateLoss()
+        try {
+            fm.executePendingTransactions()
+        } catch (e: Exception) {
+            e.message?.let { Log.e("@@@@@@", it) }
         }
     }
 

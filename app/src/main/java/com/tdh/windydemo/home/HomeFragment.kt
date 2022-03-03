@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import com.tdh.libase.base.BaseFragment
 import com.tdh.windydemo.R
 import com.tdh.windydemo.databinding.FragmentHomeBinding
+import com.tdh.windydemo.location.AddLocationDialogFragment
 import com.tdh.windydemo.model.ForecastWeatherDataModel
 import com.tdh.windydemo.utils.DateTimeUtils
 import com.tdh.windydemo.utils.ImageUtils
@@ -63,7 +64,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
         if (windDirectionBmp != null) {
             val matrix = Matrix()
-            matrix.postRotate(model.wind.deg - 45f)
+            matrix.postRotate(180f + model.wind.deg - 45f)
             val scaledBitmap = Bitmap.createScaledBitmap(
                 windDirectionBmp,
                 windDirectionBmp.width,
@@ -96,11 +97,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             showMessage("Remove ${it.name}",
                 "Do you want remove from favorite list?",
                 "Remove",
-                { dialog, which -> dialog.dismiss() },
+                { dialog, which ->
+                    homeViewModel.removeLocation(it)
+                    dialog.dismiss()
+                },
                 "Cancel",
                 { dialog, which -> dialog.dismiss() })
         }
         binding.locationRv.adapter = locationWeatherAdapter
+        binding.cityNameTv.setOnClickListener {
+            showDialogFragment(AddLocationDialogFragment())
+        }
     }
 
     override fun initData() {

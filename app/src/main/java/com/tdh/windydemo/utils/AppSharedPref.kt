@@ -9,7 +9,7 @@ import com.tdh.windydemo.model.Location
 
 class AppSharedPref {
     companion object {
-        const val KEY_LOCATIONS_SELECTED = "KEY_CITIES_SELECTED"
+        private const val KEY_LOCATIONS_SELECTED = "KEY_CITIES_SELECTED"
 
         private fun getSharePref(): SharedPreferences {
             return App.newInstance.applicationContext
@@ -36,7 +36,7 @@ class AppSharedPref {
             val locations = getLocationFavoriteList()
             val checkLocations = locations.filter { location.id == it.id }
             locations.removeAll(checkLocations)
-            locations.add(location)
+            locations.add(0, location)
             saveValueToKey(KEY_LOCATIONS_SELECTED, Gson().toJson(locations))
         }
 

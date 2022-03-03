@@ -12,6 +12,7 @@ import com.tdh.windydemo.databinding.ItemLocationWeatherViewBinding
 import com.tdh.windydemo.model.ForecastWeatherDataModel
 import com.tdh.windydemo.utils.ImageUtils
 import com.tdh.windydemo.utils.Utils
+import com.tdh.windydemo.utils.toPx
 
 class LocationWeatherAdapter(
     private val weatherDataList: MutableList<ForecastWeatherDataModel>,
@@ -31,7 +32,7 @@ class LocationWeatherAdapter(
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         val model = weatherDataList[position]
-        holder.binding.locationNameTv.text = model.name
+        holder.binding.locationNameTv.text = model.location?.name
         holder.binding.temperatureTv.text = "${Utils.kelvinToCelsius(model.main.temp)}°C"
         ImageUtils.displayImageFromUrl(
             holder.itemView.context,
@@ -46,7 +47,7 @@ class LocationWeatherAdapter(
 
         if (windDirectionBmp != null) {
             val matrix = Matrix()
-            matrix.postRotate(model.wind.deg - 45f)
+            matrix.postRotate(180f + model.wind.deg - 45f)
             val scaledBitmap = Bitmap.createScaledBitmap(
                 windDirectionBmp,
                 windDirectionBmp.width,

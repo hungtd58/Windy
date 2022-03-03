@@ -8,13 +8,16 @@ import com.tdh.windydemo.api.ApiRepositoryImpl
 import com.tdh.windydemo.api.ServiceBuilder
 import com.tdh.windydemo.model.ForecastWeatherDataModel
 import com.tdh.windydemo.model.Location
+import com.tdh.windydemo.utils.AppSharedPref
 import kotlinx.coroutines.*
 
 class HomeViewModel : BaseViewModel() {
 
     private val apiImpl = ApiRepositoryImpl(ServiceBuilder().getApiService())
+
     private val _forecastWeatherDataModel = MutableLiveData<ForecastWeatherDataModel>()
     val forecastWeatherDataModel: LiveData<ForecastWeatherDataModel> get() = _forecastWeatherDataModel
+
     private val _favoriteLocationList =
         MutableLiveData<MutableList<ForecastWeatherDataModel>>(mutableListOf())
     val favoriteLocationList: LiveData<MutableList<ForecastWeatherDataModel>> get() = _favoriteLocationList
@@ -55,7 +58,7 @@ class HomeViewModel : BaseViewModel() {
                         loadForecastWeatherOfLocation(
                             location.coord.lat.toFloat(),
                             location.coord.lon.toFloat()
-                        )
+                        ).apply { this.location = location }
                     }
                     forecastWeatherDataModels.add(forecastWeatherDataModel)
                 }
@@ -64,6 +67,15 @@ class HomeViewModel : BaseViewModel() {
                 )
             }
             hideProgress()
+        }
+    }
+
+    fun removeLocation(forecastWeatherDataModel: ForecastWeatherDataModel) {
+        viewModelScope.launch(Dispatchers.Default) {
+            forecastWeatherDataModel.location?.let {
+                AppSharedPref.removeLocationFavorite(it)
+            }
+            getForecastWeatherOfFavoriteLocations()
         }
     }
 }

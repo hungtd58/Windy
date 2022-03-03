@@ -13,5 +13,6 @@ data class ForecastWeatherDataModel(
     val timezone: Int,
     val visibility: Int,
     val weather: List<Weather>,
-    val wind: Wind
+    val wind: Wind,
+    var location: Location? = null
 )

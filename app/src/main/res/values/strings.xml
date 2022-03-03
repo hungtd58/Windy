@@ -5,4 +5,5 @@
     <string name="weather_demo_name">Overcast clouds</string>
     <string name="temp_demo_text">10°C</string>
     <string name="remove">Remove</string>
+    <string name="enter_city_name_to_search">Enter city name to search</string>
 </resources>
