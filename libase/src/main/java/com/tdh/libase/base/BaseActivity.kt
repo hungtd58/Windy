@@ -28,7 +28,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     fun hideProgress() {
-        supportFragmentManager.findFragmentByTag(LiProgressDialog::class.simpleName).let {
+        supportFragmentManager.findFragmentByTag(LiProgressDialog::class.simpleName)?.let {
             (it as LiProgressDialog).dismissAllowingStateLoss()
         }
     }

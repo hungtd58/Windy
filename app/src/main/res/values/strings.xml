@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">WindyDemo</string>
+    <string name="app_name">Windy Demo</string>
+    <string name="time_stamp">20:05 – 14 Feb, 2022</string>
+    <string name="city_demo_name">San Francisco</string>
+    <string name="weather_demo_name">Overcast clouds</string>
+    <string name="temp_demo_text">10°C</string>
+    <string name="remove">Remove</string>
+    <string name="enter_city_name_to_search">Enter city name to search</string>
+    <string name="cancel">Cancel</string>
+    <string name="add_location">Add location</string>
 </resources>
