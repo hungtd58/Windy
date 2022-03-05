@@ -43,11 +43,12 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="20dp"
                     android:drawablePadding="4dp"
-                    android:text="@string/city_demo_name"
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    app:drawableStartCompat="@drawable/ic_baseline_location_on_24" />
+                    android:visibility="gone"
+                    app:drawableStartCompat="@drawable/ic_baseline_location_on_24"
+                    tools:text="@string/city_demo_name" />
 
 
                 <LinearLayout
@@ -55,7 +56,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <ImageView
                         android:id="@+id/weather_status_iv"
@@ -70,9 +72,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:baselineAlignBottom="true"
-                        android:text="@string/weather_demo_name"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        tools:text="@string/weather_demo_name" />
                 </LinearLayout>
 
                 <TextView
@@ -82,9 +84,9 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginVertical="20dp"
                     android:baselineAlignBottom="true"
-                    android:text="@string/temp_demo_text"
                     android:textColor="@color/black"
-                    android:textSize="40sp" />
+                    android:textSize="40sp"
+                    tools:text="@string/temp_demo_text" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -109,9 +111,9 @@
                             android:ellipsize="end"
                             android:maxLines="1"
                             android:paddingEnd="25dp"
-                            android:text="Wind: 2.7m/s NNE"
                             android:textColor="@color/black"
-                            android:textSize="12sp" />
+                            android:textSize="12sp"
+                            tools:text="Wind: 2.7m/s NNE" />
 
                         <ImageView
                             android:id="@+id/direction_wind_iv"
@@ -120,7 +122,8 @@
                             android:layout_alignEnd="@+id/wind_status_tv"
                             android:layout_centerVertical="true"
                             android:contentDescription="@null"
-                            android:src="@drawable/ic_wind_direction" />
+                            android:src="@drawable/ic_wind_direction"
+                            android:visibility="gone" />
                     </RelativeLayout>
 
                     <TextView
@@ -131,9 +134,9 @@
                         android:ellipsize="end"
                         android:gravity="center"
                         android:maxLines="1"
-                        android:text="Humidity: 92%"
                         android:textColor="@color/black"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        tools:text="Humidity: 92%" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -151,9 +154,9 @@
                         android:ellipsize="end"
                         android:gravity="center"
                         android:maxLines="1"
-                        android:text="Pressure: 1020hPa"
                         android:textColor="@color/black"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        tools:text="Pressure: 1020hPa" />
 
                     <TextView
                         android:id="@+id/visibility_status_tv"
@@ -163,9 +166,9 @@
                         android:ellipsize="end"
                         android:gravity="center"
                         android:maxLines="1"
-                        android:text="Visibility: 10.0km"
                         android:textColor="@color/black"
-                        android:textSize="12sp" />
+                        android:textSize="12sp"
+                        tools:text="Visibility: 10.0km" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -173,7 +176,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:paddingHorizontal="10dp"
-                    android:paddingBottom="10dp">
+                    android:paddingBottom="10dp"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/uv_index_tv"
@@ -212,6 +216,19 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:itemCount="3"
                     tools:listitem="@layout/item_location_weather_view" />
+
+                <TextView
+                    android:id="@+id/add_location_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginVertical="20dp"
+                    android:background="@drawable/background_blue_round_radius"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="@string/add_location"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
 
 
             </LinearLayout>

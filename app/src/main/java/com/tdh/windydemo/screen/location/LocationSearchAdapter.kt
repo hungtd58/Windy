@@ -1,4 +1,4 @@
-package com.tdh.windydemo.location
+package com.tdh.windydemo.screen.location
 
 import android.view.LayoutInflater
 import android.view.View

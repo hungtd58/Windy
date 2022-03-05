@@ -1,4 +1,4 @@
-package com.tdh.windydemo.location
+package com.tdh.windydemo.screen.location
 
 import android.view.View
 import androidx.core.widget.addTextChangedListener
@@ -11,6 +11,7 @@ import isNothing
 class AddLocationDialogFragment : BaseDialogFragment<FragmentDialogAddLocationBinding>() {
     private val addLocationViewModel: AddLocationViewModel by viewModels()
     private lateinit var locationSearchAdapter: LocationSearchAdapter
+    var onDismissListener : (() -> Unit)? = null
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_dialog_add_location
@@ -18,7 +19,7 @@ class AddLocationDialogFragment : BaseDialogFragment<FragmentDialogAddLocationBi
 
     override fun getWidth() = 0.9f
 
-    override fun getHeight() = 0.8f
+    override fun getHeight() = 0.6f
 
     override fun initViewModels() {
         addViewModel(addLocationViewModel)
@@ -32,6 +33,9 @@ class AddLocationDialogFragment : BaseDialogFragment<FragmentDialogAddLocationBi
     }
 
     override fun setupView() {
+        binding.cancelTv.setOnClickListener {
+            dismissAllowingStateLoss()
+        }
         binding.searchCityEdt.addTextChangedListener {
             binding.clearIc.visibility =
                 if (it?.toString()?.isNothing() == true) View.GONE else View.VISIBLE
@@ -49,5 +53,10 @@ class AddLocationDialogFragment : BaseDialogFragment<FragmentDialogAddLocationBi
 
     override fun initData() {
         addLocationViewModel.searchLocation("")
+    }
+
+    override fun onDestroy() {
+        onDismissListener?.invoke()
+        super.onDestroy()
     }
 }

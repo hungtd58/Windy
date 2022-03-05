@@ -6,4 +6,6 @@
     <string name="temp_demo_text">10°C</string>
     <string name="remove">Remove</string>
     <string name="enter_city_name_to_search">Enter city name to search</string>
+    <string name="cancel">Cancel</string>
+    <string name="add_location">Add location</string>
 </resources>

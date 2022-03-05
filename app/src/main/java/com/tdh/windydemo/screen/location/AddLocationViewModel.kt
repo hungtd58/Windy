@@ -1,4 +1,4 @@
-package com.tdh.windydemo.location
+package com.tdh.windydemo.screen.location
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

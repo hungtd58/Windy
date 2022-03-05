@@ -1,4 +1,4 @@
-package com.tdh.windydemo.home
+package com.tdh.windydemo.screen.home
 
 import android.graphics.Bitmap
 import android.graphics.Matrix
@@ -12,7 +12,6 @@ import com.tdh.windydemo.databinding.ItemLocationWeatherViewBinding
 import com.tdh.windydemo.model.ForecastWeatherDataModel
 import com.tdh.windydemo.utils.ImageUtils
 import com.tdh.windydemo.utils.Utils
-import com.tdh.windydemo.utils.toPx
 
 class LocationWeatherAdapter(
     private val weatherDataList: MutableList<ForecastWeatherDataModel>,

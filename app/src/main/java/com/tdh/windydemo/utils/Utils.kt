@@ -24,9 +24,13 @@ class Utils {
         }
 
         fun convertDegreeToRotationName(deg: Int): String {
+            var calculateDeg = deg % 360
+            if (calculateDeg < 0) {
+                calculateDeg += 360
+            }
             val divisor = 360 / CPoint.values().size
-            val index = deg / divisor
-            val remainder = deg % divisor
+            val index = calculateDeg / divisor
+            val remainder = calculateDeg % divisor
             return if (remainder <= divisor / 2) {
                 CPoint.values()[index % CPoint.values().size].name
             } else {
