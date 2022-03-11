@@ -26,8 +26,8 @@ import com.tdh.windydemo.utils.Utils
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private val homeViewModel: HomeViewModel by viewModels()
-    private lateinit var locationWeatherAdapter: LocationWeatherAdapter
-    private lateinit var permissionResults: ActivityResultLauncher<Array<String>>
+    lateinit var locationWeatherAdapter: LocationWeatherAdapter
+    lateinit var permissionResults: ActivityResultLauncher<Array<String>>
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_home
@@ -51,20 +51,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
     }
 
-    private fun setDataToView(model: ForecastWeatherDataModel?) {
+    fun setDataToView(model: ForecastWeatherDataModel?) {
         model?.let {
             binding.currentTimeTv.text = DateTimeUtils.getTimeStamp()
             binding.cityNameTv.text = model.name
             binding.cityNameTv.visibility = View.VISIBLE
-            binding.weatherStatusIv.visibility = View.VISIBLE
+            binding.mainWeatherStatusIv.visibility = View.VISIBLE
             ImageUtils.displayImageFromUrl(
                 requireContext(),
                 "http://openweathermap.org/img/wn/" + model.weather[0].icon + ".png",
-                binding.weatherStatusIv
+                binding.mainWeatherStatusIv
             )
             binding.weatherStatusTv.text = model.weather[0].main
-            binding.temperatureTv.text = "${Utils.kelvinToCelsius(model.main.temp)}°C"
-            binding.windStatusTv.text =
+            binding.mainTemperatureTv.text = "${Utils.kelvinToCelsius(model.main.temp)}°C"
+            binding.mainWindStatusTv.text =
                 "Wind: ${model.wind.speed}m/s ${Utils.convertDegreeToRotationName(model.wind.deg)}"
             binding.humidityStatusTv.text = "Humidity: ${model.main.humidity}%"
             binding.pressureStatusTv.text = "Pressure: ${model.main.pressure}hPa"
@@ -75,7 +75,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 AppCompatResources.getDrawable(requireContext(), R.drawable.ic_wind_direction)
                     ?.toBitmap()
 
-            binding.directionWindIv.visibility = View.VISIBLE
+            binding.mainDirectionWindIv.visibility = View.VISIBLE
             if (windDirectionBmp != null) {
                 val matrix = Matrix()
                 matrix.postRotate(180f + model.wind.deg - 45f)
@@ -95,21 +95,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     matrix,
                     true
                 )
-                binding.directionWindIv.setImageBitmap(rotatedBitmap)
+                binding.mainDirectionWindIv.setImageBitmap(rotatedBitmap)
             } else {
-                binding.directionWindIv.setImageResource(R.drawable.ic_wind_direction)
+                binding.mainDirectionWindIv.setImageResource(R.drawable.ic_wind_direction)
             }
         } ?: run {
             binding.currentTimeTv.text = DateTimeUtils.getTimeStamp()
             binding.cityNameTv.visibility = View.GONE
-            binding.weatherStatusIv.visibility = View.GONE
+            binding.mainWeatherStatusIv.visibility = View.GONE
             binding.weatherStatusTv.text = ""
-            binding.temperatureTv.text = ""
-            binding.windStatusTv.text = ""
+            binding.mainTemperatureTv.text = ""
+            binding.mainWindStatusTv.text = ""
             binding.humidityStatusTv.text = ""
             binding.pressureStatusTv.text = ""
             binding.visibilityStatusTv.text = ""
-            binding.directionWindIv.visibility = View.GONE
+            binding.mainDirectionWindIv.visibility = View.GONE
         }
     }
 

@@ -11,7 +11,7 @@ import stripAccent
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-class ExampleUnitTest {
+class UtilsFunctionUnitTest {
     @Test
     fun fahrenheitToCelsius_isCorrect() {
         assertEquals(0, Utils.fahrenheitToCelsius(32.0))

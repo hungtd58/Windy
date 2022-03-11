@@ -48,7 +48,7 @@ class AddLocationDialogFragment : BaseDialogFragment<FragmentDialogAddLocationBi
         locationSearchAdapter = LocationSearchAdapter(mutableListOf()) { location, isSelected ->
             addLocationViewModel.toggleSelectLocation(location, isSelected)
         }
-        binding.locationRv.adapter = locationSearchAdapter
+        binding.searchLocationRv.adapter = locationSearchAdapter
     }
 
     override fun initData() {
