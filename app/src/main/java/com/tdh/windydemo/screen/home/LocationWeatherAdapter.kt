@@ -15,7 +15,8 @@ import com.tdh.windydemo.utils.Utils
 
 class LocationWeatherAdapter(
     private val weatherDataList: MutableList<ForecastWeatherDataModel>,
-    private val actionRemoveListener: (location: ForecastWeatherDataModel) -> Unit
+    private val actionRemoveListener: (location: ForecastWeatherDataModel) -> Unit,
+    private val actionDetailListener: (location: ForecastWeatherDataModel) -> Unit
 ) :
     RecyclerView.Adapter<LocationWeatherAdapter.VH>() {
 
@@ -70,6 +71,14 @@ class LocationWeatherAdapter(
         holder.binding.removeBtn.setOnClickListener {
             actionRemoveListener.invoke(model)
             holder.binding.swipeLayout.close(true)
+        }
+
+        holder.binding.contentView.setOnClickListener {
+            if (holder.binding.swipeLayout.isOpened) {
+                holder.binding.swipeLayout.close(true)
+                return@setOnClickListener
+            }
+            actionDetailListener.invoke(model)
         }
     }
 

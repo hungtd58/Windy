@@ -17,6 +17,8 @@ import com.tdh.windydemo.App
 import com.tdh.windydemo.R
 import com.tdh.windydemo.databinding.FragmentHomeBinding
 import com.tdh.windydemo.model.ForecastWeatherDataModel
+import com.tdh.windydemo.screen.detail.DetailLocationDialogFragment
+import com.tdh.windydemo.screen.detail.DetailLocationViewModel
 import com.tdh.windydemo.screen.location.AddLocationDialogFragment
 import com.tdh.windydemo.utils.DateTimeUtils
 import com.tdh.windydemo.utils.GpsUtils
@@ -26,6 +28,8 @@ import com.tdh.windydemo.utils.Utils
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private val homeViewModel: HomeViewModel by viewModels()
+    private val detailLocationViewModel: DetailLocationViewModel by viewModels(ownerProducer = { requireActivity() })
+
     lateinit var locationWeatherAdapter: LocationWeatherAdapter
     lateinit var permissionResults: ActivityResultLauncher<Array<String>>
 
@@ -118,17 +122,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             reloadData()
         }
 
-        locationWeatherAdapter = LocationWeatherAdapter(mutableListOf()) {
+        locationWeatherAdapter = LocationWeatherAdapter(mutableListOf(), {
             showMessage("Remove ${it.name}",
                 "Do you want remove from favorite list?",
                 "Remove",
-                { dialog, which ->
+                { dialog, _ ->
                     homeViewModel.removeLocation(it)
                     dialog.dismiss()
                 },
                 "Cancel",
                 { dialog, _ -> dialog.dismiss() })
-        }
+        }, {
+            detailLocationViewModel.forecastWeatherDataModel.postValue(it)
+            showDialogFragment(DetailLocationDialogFragment())
+        })
         binding.locationRv.adapter = locationWeatherAdapter
         binding.addLocationTv.setOnClickListener {
             showDialogFragment(AddLocationDialogFragment().apply {

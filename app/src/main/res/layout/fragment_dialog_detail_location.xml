@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/city_name_tv"
-            app:drawableStartCompat="@drawable/ic_baseline_location_on_24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -18,6 +19,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:visibility="gone"
+            app:drawableStartCompat="@drawable/ic_baseline_location_on_24"
             tools:text="@string/city_demo_name" />
 
 
